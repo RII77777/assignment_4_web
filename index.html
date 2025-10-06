@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 4</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .task {
+            margin-bottom: 50px;
+            padding: 30px;
+            border: 2px solid #f8d7e6;
+            border-radius: 10px;
+            background: white;
+            color: #c5046e;
+        }
+
+        .task h2 {
+            color: #c5046e;
+            border-bottom: 2px solid #c5046e;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .responsive-heading {
+            color: #c5046e;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .responsive-text {
+            color: #991b4f;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .responsive-heading { font-size: 1.5rem; }
+        .responsive-text { font-size: 0.9rem; }
+
+        @media (min-width: 768px) {
+            .responsive-heading { font-size: 2rem; }
+            .responsive-text { font-size: 1rem; }
+        }
+
+        @media (min-width: 1024px) {
+            .responsive-heading { font-size: 2.5rem; }
+            .responsive-text { font-size: 1.1rem; }
+        }
+
+        .container-boxes {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .box {
+            padding: 40px;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .box-1 { background: linear-gradient(135deg, #d44d6c, #ee5a52); }
+        .box-2 { background: linear-gradient(135deg, #cd4e70, #af0e4e); }
+        .box-3 { background: linear-gradient(135deg, #ac3b8c, #8e287f); }
+
+        .box { width: 100%; }
+
+        @media (min-width: 768px) {
+            .container-boxes {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            .box {
+                width: calc(50% - 8px);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container-boxes {
+                flex-wrap: nowrap;
+            }
+            .box {
+                width: calc(33.333% - 10px);
+            }
+        }
+
+        .bootstrap-column {
+            padding: 20px;
+            border-radius: 8px;
+            color: white;
+            height: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .bootstrap-column.bg-primary { background: linear-gradient(135deg, #e91e63, #ad1457) !important; }
+        .bootstrap-column.bg-success { background: linear-gradient(135deg, #ec407a, #c2185b) !important; }
+        .bootstrap-column.bg-warning { background: linear-gradient(135deg, #a9516f, #e91e63) !important; }
+
+        .bootstrap-column:hover {
+            transform: translateY(-5px);
+        }
+
+        .custom-navbar {
+            box-shadow: 0 2px 10px rgba(199, 21, 133, 0.2);
+        }
+
+        .navbar-dark.bg-dark { background: linear-gradient(135deg, #c2185b, #880e4f) !important; }
+        .navbar-dark.bg-primary { background: linear-gradient(135deg, #e91e63, #ad1457) !important; }
+
+        .portfolio-header {
+            background: linear-gradient(135deg, #c5046e 0%, #e91e63 100%);
+        }
+
+        .project-card {
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+            border: none;
+            box-shadow: 0 4px 6px rgba(199, 21, 133, 0.1);
+            border: 1px solid #f8d7e6;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(199, 21, 133, 0.2);
+        }
+
+        .sidebar {
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 100%);
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 5px solid #c5046e;
+        }
+
+        .contact-info li {
+            margin-bottom: 12px;
+            padding: 8px;
+            background: white;
+            border-radius: 5px;
+            border-left: 3px solid #c5046e;
+        }
+
+        @media (max-width: 767px) {
+            .sidebar {
+                margin-top: 30px;
+                border-left: none;
+                border-top: 5px solid #c5046e;
+            }
+        }
+
+        body {
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 100%);
+            min-height: 100vh;
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 40px 0;
+            color: #c5046e;
+        }
+
+        .badge {
+            margin: 2px;
+        }
+
+        .badge.bg-primary { background-color: #e91e63 !important; }
+        .badge.bg-success { background-color: #ec407a !important; }
+        .badge.bg-info { background-color: #f48fb1 !important; }
+        .badge.bg-warning { background-color: #f06292 !important; }
+        .badge.bg-dark { background-color: #ad1457 !important; }
+        .badge.bg-secondary { background-color: #c2185b !important; }
+
+        .alert-info {
+            background-color: #fce4ec;
+            border-color: #f8bbd9;
+            color: #c2185b;
+        }
+
+        .text-primary { color: #c5046e !important; }
+        .btn-primary { 
+            background: linear-gradient(135deg, #e91e63, #ad1457);
+            border-color: #ad1457;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark custom-navbar">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                <img src="c:\Users\revei\Downloads\270454cf58012c299337b50c3d9b4160.jpg" 
+                     alt="Logo" width="30" height="30" class="d-inline-block align-text-top me-2">
+                ARAIZHAN
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#part1">Part 1</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#part2">Part 2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#part3">Part 3</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold" style="color: #c5046e;">ARAIZHAN</h1>
+            <p class="lead" style="color: #991b4f;">Bridal salon</p>
+        </div>
+
+        <section id="part1">
+            <h2 class="section-title">Wedding salon by Araizhan Tazhimova</h2>
+
+            <div class="task" id="task0">
+                <h2>Your perfect wedding journey starts here</h2>
+                <div class="row">
+                    <div class="col-12">
+                        <h1 class="responsive-heading">Wedding dresses, accessories, complete wedding planning</h1>
+                        <p class="responsive-text">Award-winning service with 5-star ratings</p>
+                        <p class="responsive-text">
+                            <strong>Feel like</strong> 
+                            <span class="d-none d-lg-inline">a princess!</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="task" id="task1">
+                <h2>Our bridal services</h2>
+                <p class="mb-4">Discover our comprehensive wedding services:</p>
+                <div class="container-boxes">
+                    <div class="box box-1">
+                        <h4>Wedding Dresses</h4>
+                        <p>200+ models from top brands</p>
+                    </div>
+                    <div class="box box-2">
+                        <h4>Accessories</h4>
+                        <p>Veils, jewelry, wedding shoes</p>
+                    </div>
+                    <div class="box box-3">
+                        <h4>Planning</h4>
+                        <p>Full wedding service package</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="part2">
+            <h2 class="section-title">Premium wedding care</h2>
+
+            <div class="task" id="task2">
+                <h2>Our commitment</h2>
+                <p class="mb-4">Three reasons why brides trust us with their special day:</p>
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-4 mb-3">
+                        <div class="bootstrap-column bg-primary">
+                            <h3>Booking</h3>
+                            <p>Schedule your fitting online</p>
+                            <p>Choose convenient time</p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 mb-3">
+                        <div class="bootstrap-column bg-success">
+                            <h3>Collections</h3>
+                            <p>2025 wedding dresses</p>
+                            <p>Evening & cocktail dresses</p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-4 mb-3">
+                        <div class="bootstrap-column bg-warning">
+                            <h3>Reviews</h3>
+                            <p>500+ happy brides</p>
+                            <p>Real stories & photos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<div class="task" id="task3">
+    <h2>Salon navigation menu</h2>
+    <p class="mb-4">Easy-to-use menu that adapts to all devices for seamless browsing:</p>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded mb-3">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#part1">
+                <img src="c:\Users\revei\Downloads\270454cf58012c299337b50c3d9b4160.jpg" 
+                     alt="Nav Logo" width="30" height="30" class="d-inline-block align-text-top">
+               ARAIZHAN
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#demoNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="demoNavbar">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#part1">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#part1">Dresses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#part1">Accessories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#part2">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#part3">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="alert alert-info">
+        <strong>Feature:</strong> This navigation menu automatically collapses into a compact hamburger menu on mobile devices, ensuring perfect browsing on any screen size.
+    </div>
+</div>
+</section>
+
+        <section id="part3">
+            <h2 class="section-title">Why choose our salon</h2>
+
+            <div class="task" id="task4">
+                <nav class="navbar navbar-expand-lg navbar-dark portfolio-header rounded mb-4">
+                    <div class="container">
+                        <a class="navbar-brand fw-bold" href="#">
+                            <img src="c:\Users\revei\Downloads\270454cf58012c299337b50c3d9b4160.jpg" 
+                                 alt="Portfolio Logo" width="30" height="30" class="d-inline-block align-text-top me-2">
+                            ARAIZHAN
+                        </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#portfolioNav">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="portfolioNav">
+                            <ul class="navbar-nav ms-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#part1">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#part2">Services</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#part3">Gallery</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#part3">Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                <h2>BRIDAL BLISS</h2>
+                <p class="mb-4">Experience the perfect blend of luxury and responsive design:</p>
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h3 class="mb-4" style="color: #c5046e;">Just feel it</h3>
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="card project-card">
+                                    <img src="c:\Users\revei\Downloads\c95b6fd6217c7fb66442a924386bcff0.jpg" class="card-img-top" alt="Comfort Area">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Comfort</h5>
+                                        <p class="card-text">Beautifully displayed bridal footwear in various styles and heights</p>
+                                        <span class="badge bg-primary">extensive collection</span>
+                                        <span class="badge bg-success">designer brands</span>
+                                        <span class="badge bg-info">modern styles</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-4">
+                                <div class="card project-card">
+                                    <img src="c:\Users\revei\Downloads\wow.jpg" class="card-img-top" alt="Atmosphere">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Atmosphere</h5>
+                                        <p class="card-text">The best showroom with curated wedding dress collections from top designers</p>
+                                        <span class="badge bg-dark">latest wedding fashion trends</span>
+                                        <span class="badge bg-warning">organized sections</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-4">
+                                <div class="card project-card">
+                                    <img src="c:\Users\revei\Downloads\1556a7a63b5f39aadf1a4253516b9a47.jpg" class="card-img-top" alt="Elegant Accessories">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Elegant</h5>
+                                        <p class="card-text">Organized presentation of accessories</p>
+                                        <span class="badge bg-primary">perfect look</span>
+                                        <span class="badge bg-success">styling service</span>
+                                        <span class="badge bg-info">designer jewelry</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-4">
+                                <div class="card project-card">
+                                    <img src="c:\Users\revei\Downloads\fd5baccfc8a7fc3532b3c37a836a16bb.jpg" class="card-img-top" alt="Luxury Fitting">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Luxury</h5>
+                                        <p class="card-text">Private suite with full-length mirrors</p>
+                                        <span class="badge bg-primary">exclusive attention</span>
+                                        <span class="badge bg-success">perfect viewing</span>
+                                        <span class="badge bg-warning">ambient lighting</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="sidebar">
+                            <div class="text-center mb-4">
+                                <img src="c:\Users\revei\Downloads\opportunity.jpg" alt="Profile" class="rounded-circle mb-3" width="80">
+                                <h4 style="color: #c5046e;"> Ademi Aldei</h4>
+                                <p class="text-muted">Wedding consultant & stylist</p>
+                            </div>
+                            
+                            <div class="personal-info mb-4">
+                                <h5 style="color: #c5046e;">About our salon</h5>
+                                <p>10 years of creating unforgettable weddings. Individual approach to every bride with premium comfort and beauty services.</p>
+                            </div>
+                            
+                            <div class="contact-info mb-4">
+                                <h5 style="color: #c5046e;">Contact information</h5>
+                                <ul class="list-unstyled">
+                                    <li>+7 (777) 777-77-77</li>
+                                    <li>info@araizhanbridalsalon.kz</li>
+                                    <li>Astana, Mangilik El, 77</li>
+                                    <li>10:00 - 20:00 daily</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="skills">
+                                <h5 style="color: #c5046e;">Our services</h5>
+                                <div class="d-flex flex-wrap">
+                                    <span class="badge bg-primary mb-2 me-2">Dress selection</span>
+                                    <span class="badge bg-success mb-2 me-2">Accessories</span>
+                                    <span class="badge bg-warning mb-2 me-2">Beauty</span>
+                                    <span class="badge bg-info mb-2 me-2">Comfort</span>
+                                    <span class="badge bg-dark mb-2 me-2">Luxury</span>
+                                    <span class="badge bg-secondary mb-2 me-2">Planning</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <footer class="text-white text-center py-4 mt-5 rounded" style="background: linear-gradient(135deg, #c2185b, #880e4f);">
+                    <div class="container">
+                        <p class="mb-0">&copy; 2025 Bridal salon. All rights reserved.</p>
+                    </div>
+                </footer>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
